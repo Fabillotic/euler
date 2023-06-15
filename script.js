@@ -2,6 +2,12 @@ var canvS = 700;
 
 function setup() {
 	createCanvas(canvS, canvS);
+	windowResized();
+}
+
+function windowResized() {
+	canvS = min(windowWidth, windowHeight);
+	resizeCanvas(canvS, canvS);
 }
 
 function factorial(x) {
@@ -43,6 +49,12 @@ function draw() {
 	fill(255, 0, 255);
 	radians();
 	circle(coords(cos(a)), coords(-sin(a)), 10);
+
+	noFill();
+	stroke(255, 0, 255);
+	strokeWeight(4);
+	line(coords(0), coords(-0), coords(cos(a)), coords(-sin(a)));
+	noStroke();
 
 	let lcx = null;
 	let lcy = null;
