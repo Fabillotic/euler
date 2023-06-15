@@ -30,7 +30,7 @@ function draw() {
 	background(0);
 
 	translate(canvS / 2, canvS / 2);
-	scale(0.25);
+	scale(0.5);
 	translate(-canvS / 2, -canvS / 2);
 
 	noFill();
@@ -98,7 +98,13 @@ function draw() {
 
 	resetMatrix();
 
-	let error = dist(cx, cy, cos(a), sin(a))
 	fill(255, 0, 0);
+
+	let error = dist(cx, cy, cos(a), sin(a));
 	text("Error: " + error, 50, canvS - 50);
+
+	let d = dist(0, 0, cx, cy);
+
+	error = dist(cx / d, cy / d, cos(a), sin(a));
+	text("Normalized error: " + error, 50, canvS - 40);
 }
