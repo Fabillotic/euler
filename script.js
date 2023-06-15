@@ -56,12 +56,14 @@ function draw() {
 	line(coords(0), coords(-0), coords(cos(a)), coords(-sin(a)));
 	noStroke();
 
+	let cx = 0;
+	let cy = 0;
 	let lcx = null;
 	let lcy = null;
 
 	for(let i = 0; i < iterations; i++) {
-		let cx = 0;
-		let cy = 0;
+		cx = 0;
+		cy = 0;
 
 		for(let j = 0; j <= i; j++) {
 			let c = pow(a, j) / pow(i, j);
@@ -93,4 +95,6 @@ function draw() {
 
 		noStroke();
 	}
+
+	let error = dist(cx, cy, cos(a), sin(a))
 }
