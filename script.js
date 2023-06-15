@@ -41,6 +41,7 @@ function draw() {
 	let iterations = 50;
 
 	fill(255, 0, 255);
+	radians();
 	circle(coords(cos(a)), coords(-sin(a)), 10);
 
 	let lcx = null;
