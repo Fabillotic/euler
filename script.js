@@ -6,7 +6,7 @@ function setup() {
 }
 
 function windowResized() {
-	canvS = min(windowWidth, windowHeight);
+	canvS = min(windowWidth, windowHeight - 50) * 0.9;
 	resizeCanvas(canvS, canvS);
 }
 
@@ -22,7 +22,7 @@ function coefficient(n, k) {
 	return factorial(n) / (factorial(k) * factorial(n - k));
 }
 
-function coords(c) {
+function coord(c) {
 	return map(c, -1, 1, canvS / 4, canvS * 3 / 4);
 }
 
@@ -48,12 +48,12 @@ function draw() {
 
 	fill(255, 0, 255);
 	radians();
-	circle(coords(cos(a)), coords(-sin(a)), 10);
+	circle(coord(cos(a)), coord(-sin(a)), 10);
 
 	noFill();
 	stroke(255, 0, 255);
 	strokeWeight(4);
-	line(coords(0), coords(-0), coords(cos(a)), coords(-sin(a)));
+	line(coord(0), coord(-0), coord(cos(a)), coord(-sin(a)));
 	noStroke();
 
 	let cx = 0;
@@ -79,22 +79,26 @@ function draw() {
 				cy += t;
 			}
 		}
-		fill(255 * (i + 1) / iterations, 255, 0);
-		circle(coords(cx), coords(-cy), 10);
-
 		noFill();
 		stroke(125);
 		strokeWeight(3);
 
 		if(lcx !== null) {
-			line(coords(cx), coords(-cy), coords(lcx), coords(-lcy));
+			line(coord(cx), coord(-cy), coord(lcx), coord(-lcy));
 		}
 
 		lcx = cx;
 		lcy = cy;
 
 		noStroke();
+
+		fill(255 * (i + 1) / iterations, 255, 0);
+		circle(coord(cx), coord(-cy), 10);
 	}
 
+	resetMatrix();
+
 	let error = dist(cx, cy, cos(a), sin(a))
+	fill(255, 0, 0);
+	text("Error: " + error, 50, canvS - 50);
 }
