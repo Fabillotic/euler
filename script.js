@@ -60,6 +60,7 @@ function draw() {
 	let cy = 0;
 	let lcx = null;
 	let lcy = null;
+	let d;
 
 	for(let i = 0; i < iterations; i++) {
 		cx = 0;
@@ -94,6 +95,11 @@ function draw() {
 
 		fill(255 * (i + 1) / iterations, 255, 0);
 		circle(coord(cx), coord(-cy), 10);
+
+		d = dist(0, 0, cx, cy);
+
+		fill(255, 0, 255 * (i + 1) / iterations);
+		circle(coord(cx / d), coord(-cy / d), 10);
 	}
 
 	resetMatrix();
@@ -103,7 +109,7 @@ function draw() {
 	let error = dist(cx, cy, cos(a), sin(a));
 	text("Error: " + error, 50, canvS - 50);
 
-	let d = dist(0, 0, cx, cy);
+	d = dist(0, 0, cx, cy);
 
 	error = dist(cx / d, cy / d, cos(a), sin(a));
 	text("Normalized error: " + error, 50, canvS - 40);
