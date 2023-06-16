@@ -108,3 +108,34 @@ function draw() {
 	error = dist(cx / d, cy / d, cos(a), sin(a));
 	text("Normalized error: " + error, 50, canvS - 40);
 }
+
+function get_itr_data(a, iterations) {
+	let cx = 0;
+	let cy = 0;
+
+	let s = "";
+
+	for(let i = 0; i < iterations; i++) {
+		cx = 0;
+		cy = 0;
+
+		for(let j = 0; j <= i; j++) {
+			let c = pow(a, j) / pow(i, j);
+			let f = coefficient(i, j);
+			f *= (j % 4) > 1 ? -1 : 1;
+
+			let t = f * c;
+
+			if((j % 4) % 2 == 0) {
+				cx += t;
+			}
+			else {
+				cy += t;
+			}
+		}
+
+		s += `i: ${i}, cx: ${cx}, cy: ${cy}\n`;
+	}
+
+	return s;
+}
